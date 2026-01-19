@@ -1,130 +1,166 @@
-import { Check, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-const plans = [
-  {
-    name: "Поддерживающая",
-    price: "70-120",
-    unit: "₽/м²",
-    description: "Регулярная уборка для поддержания чистоты",
-    features: [
-      "Влажная уборка всех поверхностей",
-      "Уборка пыли и паутины",
-      "Мытьё полов",
-      "Уборка санузлов",
-      "Вынос мусора",
-    ],
-    popular: false,
-  },
-  {
-    name: "Генеральная",
-    price: "200",
-    unit: "₽/м²",
-    description: "Глубокая уборка всего помещения",
-    features: [
-      "Всё из поддерживающей уборки",
-      "Мытьё окон изнутри",
-      "Чистка бытовой техники снаружи",
-      "Уборка под мебелью",
-      "Чистка плинтусов и дверей",
-      "Уборка балкона/лоджии",
-    ],
-    popular: true,
-  },
-  {
-    name: "All Inclusive",
-    price: "500",
-    unit: "₽/м²",
-    description: "Все виды уборки под ключ",
-    features: [
-      "Всё из генеральной уборки",
-      "Химчистка мягкой мебели",
-      "Мытьё люстр и светильников",
-      "Глубокая чистка холодильника",
-      "Чистка духовки внутри",
-      "Любые дополнительные работы",
-    ],
-    popular: false,
-  },
-];
+import { Check, Star, Zap, Crown } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Pricing = () => {
+  const plans = [
+    {
+      name: 'Базовая',
+      subtitle: 'Поддерживающая уборка',
+      price: '2 500',
+      unit: '₽',
+      period: 'за визит',
+      icon: Zap,
+      features: [
+        'Влажная уборка полов',
+        'Протирка пыли с поверхностей',
+        'Уборка санузла',
+        'Мытьё посуды',
+        'Вынос мусора',
+      ],
+      popular: false,
+      buttonVariant: 'outline' as const,
+    },
+    {
+      name: 'Оптимальная',
+      subtitle: 'Генеральная уборка',
+      price: '4 500',
+      unit: '₽',
+      period: 'за визит',
+      icon: Star,
+      features: [
+        'Всё из тарифа "Базовая"',
+        'Мытьё окон изнутри',
+        'Чистка кухонной техники',
+        'Уборка внутри шкафов',
+        'Глажка белья до 10 вещей',
+        'Дезинфекция поверхностей',
+      ],
+      popular: true,
+      buttonVariant: 'default' as const,
+    },
+    {
+      name: 'Премиум',
+      subtitle: 'All Inclusive',
+      price: '7 500',
+      unit: '₽',
+      period: 'за визит',
+      icon: Crown,
+      features: [
+        'Всё из тарифа "Оптимальная"',
+        'Химчистка 1 единицы мебели',
+        'Мытьё холодильника',
+        'Чистка духовки',
+        'Организация пространства',
+        'Ароматизация помещения',
+        'Приоритетный выезд',
+      ],
+      popular: false,
+      buttonVariant: 'outline' as const,
+    },
+  ];
+
   return (
-    <section id="pricing" className="py-24 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 rounded-full bg-accent text-accent-foreground font-medium text-sm mb-4">
+    <section id="pricing" className="py-24 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/50 to-background" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             Тарифы
           </span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Прозрачные цены <span className="text-gradient">без скрытых платежей</span>
+          <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">
+            Прозрачные
+            <span className="text-gradient"> цены</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Выберите подходящий тариф или закажите индивидуальный расчёт для вашего помещения
+          <p className="text-muted-foreground text-lg">
+            Никаких скрытых платежей. Цена фиксируется до начала работ.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {plans.map((plan) => (
-            <div 
-              key={plan.name}
-              className={`relative bg-card rounded-2xl p-6 card-elevated ${
-                plan.popular ? 'ring-2 ring-primary' : ''
+        {/* Pricing Cards */}
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
+          {plans.map((plan, index) => (
+            <div
+              key={index}
+              className={`relative rounded-3xl p-6 lg:p-8 transition-all duration-300 hover:-translate-y-2 ${
+                plan.popular
+                  ? 'hero-gradient text-primary-foreground shadow-2xl shadow-primary/30 scale-105 z-10'
+                  : 'bg-card border border-border hover:border-primary/30 hover:shadow-xl'
               }`}
             >
+              {/* Popular Badge */}
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <div className="flex items-center gap-1 px-3 py-1 hero-gradient rounded-full text-primary-foreground text-sm font-medium">
-                    <Star className="w-4 h-4" />
-                    Популярный
-                  </div>
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-secondary text-secondary-foreground text-sm font-medium rounded-full shadow-lg">
+                  Популярный выбор
                 </div>
               )}
 
-              <div className="text-center mb-6 pt-2">
-                <h3 className="font-heading font-bold text-xl mb-2">{plan.name}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
-                <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-sm text-muted-foreground">от</span>
-                  <span className="font-heading font-bold text-4xl">{plan.price}</span>
-                  <span className="text-muted-foreground">{plan.unit}</span>
-                </div>
+              {/* Icon */}
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${
+                plan.popular ? 'bg-primary-foreground/20' : 'bg-primary/10'
+              }`}>
+                <plan.icon className={`w-7 h-7 ${plan.popular ? 'text-primary-foreground' : 'text-primary'}`} />
               </div>
 
-              <ul className="space-y-3 mb-6">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">{feature}</span>
+              {/* Plan Info */}
+              <div className="mb-6">
+                <h3 className="font-heading text-2xl font-bold mb-1">{plan.name}</h3>
+                <p className={`text-sm ${plan.popular ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>
+                  {plan.subtitle}
+                </p>
+              </div>
+
+              {/* Price */}
+              <div className="mb-8">
+                <div className="flex items-baseline gap-1">
+                  <span className="font-heading text-4xl lg:text-5xl font-bold">{plan.price}</span>
+                  <span className="text-xl">{plan.unit}</span>
+                </div>
+                <span className={`text-sm ${plan.popular ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
+                  {plan.period}
+                </span>
+              </div>
+
+              {/* Features */}
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((feature, fIndex) => (
+                  <li key={fIndex} className="flex items-start gap-3">
+                    <Check className={`w-5 h-5 shrink-0 mt-0.5 ${
+                      plan.popular ? 'text-primary-foreground' : 'text-primary'
+                    }`} />
+                    <span className={`text-sm ${plan.popular ? 'text-primary-foreground/90' : 'text-muted-foreground'}`}>
+                      {feature}
+                    </span>
                   </li>
                 ))}
               </ul>
 
-              <Button 
-                className={`w-full font-semibold ${plan.popular ? 'hero-gradient' : ''}`}
-                variant={plan.popular ? 'default' : 'outline'}
+              {/* CTA */}
+              <Button
+                variant={plan.popular ? 'secondary' : plan.buttonVariant}
+                className={`w-full rounded-full ${
+                  plan.popular 
+                    ? 'bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-lg' 
+                    : ''
+                }`}
               >
-                Заказать
+                Выбрать тариф
               </Button>
             </div>
           ))}
         </div>
 
-        {/* Subscription CTA */}
-        <div className="mt-16 bg-card rounded-3xl p-8 md:p-12 card-elevated max-w-4xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h3 className="font-heading font-bold text-2xl mb-2">
-                Уборка по подписке — <span className="text-gradient">экономия до 25%</span>
-              </h3>
-              <p className="text-muted-foreground">
-                Закажите регулярную уборку и получите выгодную цену + приоритетное обслуживание
-              </p>
-            </div>
-            <Button size="lg" className="hero-gradient font-semibold whitespace-nowrap">
-              Узнать подробнее
-            </Button>
-          </div>
+        {/* Bottom Note */}
+        <div className="text-center mt-12">
+          <p className="text-muted-foreground">
+            Нужна индивидуальная оценка?{' '}
+            <a href="#contacts" className="text-primary hover:underline font-medium">
+              Свяжитесь с нами
+            </a>
+          </p>
         </div>
       </div>
     </section>

@@ -1,41 +1,136 @@
-import { Sparkles } from "lucide-react";
+import { Sparkles, MapPin, Phone, Mail } from 'lucide-react';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const links = {
+    services: [
+      { name: 'Уборка квартир', href: '#services' },
+      { name: 'Уборка офисов', href: '#services' },
+      { name: 'Генеральная уборка', href: '#services' },
+      { name: 'Химчистка мебели', href: '#services' },
+      { name: 'Мойка окон', href: '#services' },
+    ],
+    company: [
+      { name: 'О компании', href: '#about' },
+      { name: 'Наша команда', href: '#about' },
+      { name: 'Отзывы клиентов', href: '#' },
+      { name: 'Вакансии', href: '#' },
+    ],
+    legal: [
+      { name: 'Политика конфиденциальности', href: '#' },
+      { name: 'Договор оферты', href: '#' },
+      { name: 'Реквизиты', href: '#' },
+    ],
+  };
+
   return (
-    <footer className="bg-foreground text-background py-12">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-primary-foreground" />
+    <footer className="bg-foreground text-background relative overflow-hidden">
+      {/* Decorative gradient */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          {/* Brand */}
+          <div className="lg:col-span-1">
+            <a href="#" className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center">
+                <Sparkles className="w-6 h-6 text-primary-foreground" />
+              </div>
+              <div>
+                <span className="font-heading text-xl font-bold">Империя Блеска</span>
+                <p className="text-xs text-background/60">Клининговая компания</p>
+              </div>
+            </a>
+            <p className="text-background/70 text-sm leading-relaxed mb-6">
+              Профессиональный клининг для дома и бизнеса. Работаем с 2010 года.
+            </p>
+            <div className="space-y-3">
+              <a href="tel:+74951234567" className="flex items-center gap-3 text-sm text-background/70 hover:text-primary transition-colors">
+                <Phone className="w-4 h-4" />
+                +7 (495) 123-45-67
+              </a>
+              <a href="mailto:info@imperiableska.ru" className="flex items-center gap-3 text-sm text-background/70 hover:text-primary transition-colors">
+                <Mail className="w-4 h-4" />
+                info@imperiableska.ru
+              </a>
+              <div className="flex items-center gap-3 text-sm text-background/70">
+                <MapPin className="w-4 h-4" />
+                Москва
+              </div>
             </div>
-            <div className="flex flex-col">
-              <span className="font-heading font-bold text-lg leading-tight">Империя</span>
-              <span className="font-heading font-bold text-lg leading-tight text-primary">Блеска</span>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="font-heading font-bold mb-6">Услуги</h4>
+            <ul className="space-y-3">
+              {links.services.map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-background/70 hover:text-primary transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="font-heading font-bold mb-6">Компания</h4>
+            <ul className="space-y-3">
+              {links.company.map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-background/70 hover:text-primary transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="font-heading font-bold mb-6">Документы</h4>
+            <ul className="space-y-3">
+              {links.legal.map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-background/70 hover:text-primary transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="mt-16 pt-8 border-t border-background/10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-background/50">
+              © {currentYear} Империя Блеска. Все права защищены.
+            </p>
+            <div className="flex items-center gap-6">
+              <a href="#" className="text-sm text-background/50 hover:text-primary transition-colors">
+                WhatsApp
+              </a>
+              <a href="#" className="text-sm text-background/50 hover:text-primary transition-colors">
+                Telegram
+              </a>
+              <a href="#" className="text-sm text-background/50 hover:text-primary transition-colors">
+                VK
+              </a>
             </div>
-          </a>
-
-          {/* Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-6">
-            <a href="#services" className="text-background/70 hover:text-background transition-colors">
-              Услуги
-            </a>
-            <a href="#about" className="text-background/70 hover:text-background transition-colors">
-              О нас
-            </a>
-            <a href="#pricing" className="text-background/70 hover:text-background transition-colors">
-              Цены
-            </a>
-            <a href="#contacts" className="text-background/70 hover:text-background transition-colors">
-              Контакты
-            </a>
-          </nav>
-
-          {/* Copyright */}
-          <p className="text-background/50 text-sm">
-            © 2024 Империя Блеска. Все права защищены.
-          </p>
+          </div>
         </div>
       </div>
     </footer>
