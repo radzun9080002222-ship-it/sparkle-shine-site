@@ -1,86 +1,124 @@
-import { Home, Building, Sofa, Sparkles, Ship, Wrench } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-const services = [
-  {
-    icon: Home,
-    title: "Генеральная уборка",
-    price: "от 200₽/м²",
-    description: "Обновление внешнего вида помещения после длительного использования, подготовка к сдаче или продаже.",
-  },
-  {
-    icon: Wrench,
-    title: "Послеремонтная уборка",
-    price: "от 300₽/м²",
-    description: "Подготовим помещение к торжественной сдаче в эксплуатацию после строительных работ.",
-  },
-  {
-    icon: Sparkles,
-    title: "Поддерживающая уборка",
-    price: "от 70₽/м²",
-    description: "Регулярная безупречная чистота в квартире, коттедже, загородном доме.",
-  },
-  {
-    icon: Sofa,
-    title: "Химчистка мебели",
-    price: "от 350₽/м²",
-    description: "Удаление загрязнений с мягкой мебели, восстановление цвета, выведение пятен.",
-  },
-  {
-    icon: Building,
-    title: "Уборка офисов",
-    price: "от 50₽/м²",
-    description: "Ежедневная уборка офисных помещений любой площади с гибким графиком.",
-  },
-  {
-    icon: Ship,
-    title: "Уборка яхт и катеров",
-    price: "по запросу",
-    description: "Профессиональный клининг маломерных судов с учётом специфики морского транспорта.",
-  },
-];
+import { Home, Building2, Sparkles, Sofa, Wind, Warehouse, ArrowUpRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Services = () => {
+  const services = [
+    {
+      icon: Home,
+      title: 'Уборка квартир',
+      description: 'Поддерживающая, генеральная и уборка после ремонта',
+      price: 'от 2 500 ₽',
+      color: 'from-primary/20 to-primary/5',
+      iconBg: 'bg-primary/10',
+      iconColor: 'text-primary',
+    },
+    {
+      icon: Building2,
+      title: 'Уборка офисов',
+      description: 'Ежедневная и периодическая уборка коммерческих помещений',
+      price: 'от 80 ₽/м²',
+      color: 'from-secondary/20 to-secondary/5',
+      iconBg: 'bg-secondary/10',
+      iconColor: 'text-secondary',
+    },
+    {
+      icon: Sparkles,
+      title: 'Генеральная уборка',
+      description: 'Глубокая очистка всех поверхностей с дезинфекцией',
+      price: 'от 4 500 ₽',
+      color: 'from-primary/20 to-primary/5',
+      iconBg: 'bg-primary/10',
+      iconColor: 'text-primary',
+    },
+    {
+      icon: Sofa,
+      title: 'Химчистка мебели',
+      description: 'Профессиональная чистка диванов, кресел и матрасов',
+      price: 'от 1 500 ₽',
+      color: 'from-secondary/20 to-secondary/5',
+      iconBg: 'bg-secondary/10',
+      iconColor: 'text-secondary',
+    },
+    {
+      icon: Wind,
+      title: 'Мойка окон',
+      description: 'Мытьё окон, витрин и фасадов на любой высоте',
+      price: 'от 400 ₽/окно',
+      color: 'from-primary/20 to-primary/5',
+      iconBg: 'bg-primary/10',
+      iconColor: 'text-primary',
+    },
+    {
+      icon: Warehouse,
+      title: 'После ремонта',
+      description: 'Полная уборка с удалением строительной пыли',
+      price: 'от 5 000 ₽',
+      color: 'from-secondary/20 to-secondary/5',
+      iconBg: 'bg-secondary/10',
+      iconColor: 'text-secondary',
+    },
+  ];
+
   return (
-    <section id="services" className="py-24 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 rounded-full bg-accent text-accent-foreground font-medium text-sm mb-4">
+    <section id="services" className="py-24 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             Наши услуги
           </span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Профессиональная уборка <span className="text-gradient">любых помещений</span>
+          <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">
+            Полный спектр
+            <span className="text-gradient"> клининговых услуг</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            От квартир до коммерческих объектов — мы справимся с любой задачей качественно и в срок
+          <p className="text-muted-foreground text-lg">
+            Выберите подходящую услугу или закажите комплексную уборку со скидкой 15%
           </p>
         </div>
 
+        {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <div 
-              key={service.title}
-              className="group bg-card rounded-2xl p-6 card-elevated animate-fade-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+            <div
+              key={index}
+              className="group relative bg-card rounded-2xl p-6 border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
             >
-              <div className="w-14 h-14 rounded-xl bg-accent flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                <service.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" />
+              {/* Gradient Background */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${service.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity`} />
+              
+              <div className="relative z-10">
+                {/* Icon */}
+                <div className={`w-14 h-14 rounded-2xl ${service.iconBg} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
+                  <service.icon className={`w-7 h-7 ${service.iconColor}`} />
+                </div>
+
+                {/* Content */}
+                <h3 className="font-heading text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                  {service.description}
+                </p>
+
+                {/* Footer */}
+                <div className="flex items-center justify-between pt-4 border-t border-border">
+                  <span className="font-heading text-lg font-bold text-primary">{service.price}</span>
+                  <button className="w-10 h-10 rounded-xl bg-muted group-hover:bg-primary flex items-center justify-center transition-colors">
+                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
+                  </button>
+                </div>
               </div>
-              
-              <h3 className="font-heading font-bold text-xl mb-2">{service.title}</h3>
-              <p className="text-primary font-semibold mb-3">{service.price}</p>
-              <p className="text-muted-foreground text-sm mb-4">{service.description}</p>
-              
-              <Button variant="ghost" className="p-0 h-auto font-semibold text-primary hover:text-primary/80">
-                Подробнее →
-              </Button>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <Button size="lg" className="hero-gradient font-semibold">
-            Рассчитать стоимость уборки
+        {/* CTA */}
+        <div className="text-center mt-12">
+          <Button size="lg" className="rounded-full px-8 shadow-lg shadow-primary/25 hero-gradient">
+            Смотреть все услуги
           </Button>
         </div>
       </div>
