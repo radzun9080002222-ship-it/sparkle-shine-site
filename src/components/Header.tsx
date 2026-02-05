@@ -60,12 +60,12 @@ const Header = () => {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-4">
-            <a href="tel:+74951234567" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            <a href="tel:+79002885255" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
               <Phone className="w-4 h-4" />
-              +7 (495) 123-45-67
+              +7 900 288-52-55
             </a>
-            <Button className="rounded-full px-6 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-shadow hero-gradient">
-              Заказать уборку
+            <Button className="rounded-full px-6 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-shadow hero-gradient" asChild>
+              <a href="#contacts">Заказать уборку</a>
             </Button>
           </div>
 
@@ -95,7 +95,9 @@ const Header = () => {
                 {link.name}
               </a>
             ))}
-            <Button className="mt-4 rounded-full hero-gradient">Заказать уборку</Button>
+            <Button className="mt-4 rounded-full hero-gradient" asChild>
+              <a href="#contacts">Заказать уборку</a>
+            </Button>
           </nav>
         </div>
       </div>

@@ -8,25 +8,25 @@ const Contacts = () => {
     {
       icon: Phone,
       label: 'Телефон',
-      value: '+7 (495) 123-45-67',
-      href: 'tel:+74951234567',
+      value: '+7 900 288-52-55',
+      href: 'tel:+79002885255',
     },
     {
       icon: Mail,
       label: 'Email',
-      value: 'info@imperiableska.ru',
-      href: 'mailto:info@imperiableska.ru',
+      value: 'imperiableska2025@gmail.com',
+      href: 'mailto:imperiableska2025@gmail.com',
     },
     {
       icon: MapPin,
       label: 'Адрес',
-      value: 'Москва, ул. Примерная, д. 1',
-      href: '#',
+      value: 'г. Сочи, ул. Донская, 12',
+      href: 'https://maps.google.com/?q=Сочи,ул.Донская,12',
     },
     {
       icon: Clock,
-      label: 'Режим работы',
-      value: 'Пн-Вс: 8:00 - 22:00',
+      label: 'Зона обслуживания',
+      value: 'Сочи, Адлер, Красная Поляна',
       href: null,
     },
   ];

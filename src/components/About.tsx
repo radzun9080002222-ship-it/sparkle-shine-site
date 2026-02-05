@@ -1,12 +1,14 @@
 import { CheckCircle2, Users, Award, Leaf, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import teamImage from '@/assets/team.jpeg';
+import windowImage from '@/assets/window-cleaning.jpeg';
 
 const About = () => {
   const advantages = [
     {
       icon: Users,
       title: 'Опытная команда',
-      description: 'Более 150 обученных специалистов',
+      description: 'Обученные специалисты с опытом',
     },
     {
       icon: Leaf,
@@ -28,7 +30,7 @@ const About = () => {
   const checklist = [
     'Фиксированные цены без скрытых доплат',
     'Современное профессиональное оборудование',
-    'Страхование ответственности до 1 млн ₽',
+    'Страхование ответственности',
     'Контроль качества после каждой уборки',
   ];
 
@@ -40,49 +42,34 @@ const About = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left - Visual */}
+          {/* Left - Visual with Photos */}
           <div className="relative">
-            {/* Main Visual Block */}
-            <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary/10 via-primary/5 to-secondary/10 p-1">
-              <div className="bg-card rounded-[22px] p-8 md:p-12">
-                {/* Stats */}
-                <div className="grid grid-cols-2 gap-8">
-                  <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-transparent">
-                    <span className="block font-heading text-5xl md:text-6xl font-bold text-gradient">
-                      14
-                    </span>
-                    <span className="text-muted-foreground text-sm mt-2 block">Лет на рынке</span>
-                  </div>
-                  <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-secondary/10 to-transparent">
-                    <span className="block font-heading text-5xl md:text-6xl font-bold text-foreground">
-                      5K+
-                    </span>
-                    <span className="text-muted-foreground text-sm mt-2 block">Клиентов</span>
-                  </div>
-                  <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-muted to-transparent">
-                    <span className="block font-heading text-5xl md:text-6xl font-bold text-foreground">
-                      98%
-                    </span>
-                    <span className="text-muted-foreground text-sm mt-2 block">Рекомендуют</span>
-                  </div>
-                  <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-transparent">
-                    <span className="block font-heading text-5xl md:text-6xl font-bold" style={{ background: 'linear-gradient(135deg, hsl(42 85% 55%) 0%, hsl(168 65% 38%) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                      150
-                    </span>
-                    <span className="text-muted-foreground text-sm mt-2 block">Специалистов</span>
-                  </div>
-                </div>
-              </div>
+            {/* Main Photo */}
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <img 
+                src={teamImage} 
+                alt="Команда Империя Блеска" 
+                className="w-full h-[400px] object-cover"
+              />
+            </div>
+            
+            {/* Secondary Photo - overlapping */}
+            <div className="absolute -bottom-8 -right-8 w-48 h-64 rounded-2xl overflow-hidden shadow-xl border-4 border-background hidden md:block">
+              <img 
+                src={windowImage} 
+                alt="Мытье окон" 
+                className="w-full h-full object-cover"
+              />
             </div>
 
             {/* Floating Badge */}
-            <div className="absolute -bottom-6 -right-6 px-6 py-4 bg-card rounded-2xl shadow-xl border border-border">
+            <div className="absolute -top-4 -left-4 px-6 py-4 bg-card rounded-2xl shadow-xl border border-border">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center">
                   <Award className="w-6 h-6 text-secondary" />
                 </div>
                 <div>
-                  <p className="font-heading font-bold">№1 в Москве</p>
+                  <p className="font-heading font-bold">№1 в Сочи</p>
                   <p className="text-sm text-muted-foreground">по версии клиентов</p>
                 </div>
               </div>
@@ -101,9 +88,9 @@ const About = () => {
                 доступной
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                «Империя Блеска» — это команда профессионалов, которая заботится о чистоте 
-                вашего пространства с 2010 года. Мы используем только проверенные методы 
-                и экологичные средства.
+                «Империя Блеска» — это команда профессионалов в Сочи, которая заботится о чистоте 
+                вашего пространства. Мы обслуживаем Сочи, Адлер и Красную Поляну, используя 
+                только проверенные методы и экологичные средства.
               </p>
             </div>
 
@@ -136,8 +123,8 @@ const About = () => {
             </div>
 
             {/* CTA */}
-            <Button size="lg" className="rounded-full px-8 shadow-lg shadow-primary/25 hero-gradient">
-              Узнать больше о нас
+            <Button size="lg" className="rounded-full px-8 shadow-lg shadow-primary/25 hero-gradient" asChild>
+              <a href="#contacts">Связаться с нами</a>
             </Button>
           </div>
         </div>
