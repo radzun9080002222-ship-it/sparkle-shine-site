@@ -43,20 +43,20 @@ const Footer = () => {
               </div>
             </a>
             <p className="text-background/70 text-sm leading-relaxed mb-6">
-              Профессиональный клининг для дома и бизнеса. Работаем с 2010 года.
+              Профессиональный клининг в Сочи, Адлере и Красной Поляне.
             </p>
             <div className="space-y-3">
-              <a href="tel:+74951234567" className="flex items-center gap-3 text-sm text-background/70 hover:text-primary transition-colors">
+              <a href="tel:+79002885255" className="flex items-center gap-3 text-sm text-background/70 hover:text-primary transition-colors">
                 <Phone className="w-4 h-4" />
-                +7 (495) 123-45-67
+                +7 900 288-52-55
               </a>
-              <a href="mailto:info@imperiableska.ru" className="flex items-center gap-3 text-sm text-background/70 hover:text-primary transition-colors">
+              <a href="mailto:imperiableska2025@gmail.com" className="flex items-center gap-3 text-sm text-background/70 hover:text-primary transition-colors">
                 <Mail className="w-4 h-4" />
-                info@imperiableska.ru
+                imperiableska2025@gmail.com
               </a>
               <div className="flex items-center gap-3 text-sm text-background/70">
                 <MapPin className="w-4 h-4" />
-                Москва
+                г. Сочи, ул. Донская, 12
               </div>
             </div>
           </div>

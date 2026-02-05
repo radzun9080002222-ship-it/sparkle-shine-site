@@ -1,10 +1,11 @@
-import { ArrowRight, Star, Shield, Clock, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Star, Shield, Clock, CheckCircle2, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import heroImage from '@/assets/steam-cleaning.jpeg';
 
 const Hero = () => {
   const features = [
     { icon: Shield, text: 'Гарантия качества' },
-    { icon: Clock, text: 'Выезд за 2 часа' },
+    { icon: Clock, text: 'Выезд в день заказа' },
     { icon: Star, text: 'Рейтинг 4.9' },
   ];
 
@@ -25,7 +26,7 @@ const Hero = () => {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-sm font-medium text-primary">Работаем с 2010 года</span>
+              <span className="text-sm font-medium text-primary">Сочи · Адлер · Красная Поляна</span>
             </div>
 
             {/* Heading */}
@@ -58,63 +59,47 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button size="lg" className="rounded-full px-8 shadow-xl shadow-primary/25 hover:shadow-primary/40 transition-all hover:-translate-y-0.5 hero-gradient">
-                Рассчитать стоимость
-                <ArrowRight className="w-4 h-4 ml-2" />
+              <Button size="lg" className="rounded-full px-8 shadow-xl shadow-primary/25 hover:shadow-primary/40 transition-all hover:-translate-y-0.5 hero-gradient" asChild>
+                <a href="tel:+79002885255">
+                  <Phone className="w-4 h-4 mr-2" />
+                  +7 900 288-52-55
+                </a>
               </Button>
-              <Button size="lg" variant="outline" className="rounded-full px-8 hover:-translate-y-0.5 transition-transform">
-                Наши работы
+              <Button size="lg" variant="outline" className="rounded-full px-8 hover:-translate-y-0.5 transition-transform" asChild>
+                <a href="#pricing">
+                  Узнать цены
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </a>
               </Button>
             </div>
           </div>
 
-          {/* Right Content - Visual Card */}
+          {/* Right Content - Photo */}
           <div className="relative lg:pl-12">
-            {/* Main Card */}
-            <div className="relative bg-card rounded-3xl p-8 shadow-2xl border border-border overflow-hidden card-elevated">
-              {/* Decorative gradient */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-bl-full" />
+            {/* Main Image */}
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-border">
+              <img 
+                src={heroImage} 
+                alt="Профессиональная уборка - Империя Блеска" 
+                className="w-full h-[500px] object-cover"
+              />
+              {/* Overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
               
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-6 relative z-10">
-                <div className="space-y-2 p-4 rounded-2xl bg-primary/5">
-                  <span className="text-4xl font-heading font-bold text-primary">14+</span>
-                  <p className="text-sm text-muted-foreground">Лет опыта</p>
-                </div>
-                <div className="space-y-2 p-4 rounded-2xl bg-secondary/10">
-                  <span className="text-4xl font-heading font-bold text-secondary">5000+</span>
-                  <p className="text-sm text-muted-foreground">Довольных клиентов</p>
-                </div>
-                <div className="space-y-2 p-4 rounded-2xl bg-muted">
-                  <span className="text-4xl font-heading font-bold">150+</span>
-                  <p className="text-sm text-muted-foreground">Сотрудников</p>
-                </div>
-                <div className="space-y-2 p-4 rounded-2xl bg-primary/5">
-                  <span className="text-4xl font-heading font-bold text-primary">24/7</span>
-                  <p className="text-sm text-muted-foreground">Поддержка</p>
-                </div>
-              </div>
-
-              {/* Bottom section */}
-              <div className="mt-6 pt-6 border-t border-border">
-                <div className="flex items-center gap-4">
-                  <div className="flex -space-x-3">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div
-                        key={i}
-                        className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 border-2 border-card flex items-center justify-center"
-                      >
-                        <span className="text-xs font-bold">{['А', 'М', 'Е', 'Д'][i - 1]}</span>
-                      </div>
-                    ))}
+              {/* Stats on image */}
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="bg-card/90 backdrop-blur-sm rounded-xl p-3 text-center">
+                    <span className="block font-heading text-2xl font-bold text-primary">5+</span>
+                    <span className="text-xs text-muted-foreground">Лет опыта</span>
                   </div>
-                  <div>
-                    <div className="flex items-center gap-1">
-                      {[1, 2, 3, 4, 5].map((i) => (
-                        <Star key={i} className="w-4 h-4 fill-secondary text-secondary" />
-                      ))}
-                    </div>
-                    <p className="text-sm text-muted-foreground">500+ отзывов</p>
+                  <div className="bg-card/90 backdrop-blur-sm rounded-xl p-3 text-center">
+                    <span className="block font-heading text-2xl font-bold text-secondary">1000+</span>
+                    <span className="text-xs text-muted-foreground">Клиентов</span>
+                  </div>
+                  <div className="bg-card/90 backdrop-blur-sm rounded-xl p-3 text-center">
+                    <span className="block font-heading text-2xl font-bold">4.9</span>
+                    <span className="text-xs text-muted-foreground">Рейтинг</span>
                   </div>
                 </div>
               </div>

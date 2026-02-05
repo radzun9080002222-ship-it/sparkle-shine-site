@@ -6,7 +6,7 @@ const Pricing = () => {
     {
       name: 'Базовая',
       subtitle: 'Поддерживающая уборка',
-      price: '2 500',
+      price: 'от 3 500',
       unit: '₽',
       period: 'за визит',
       icon: Zap,
@@ -21,9 +21,9 @@ const Pricing = () => {
       buttonVariant: 'outline' as const,
     },
     {
-      name: 'Оптимальная',
+      name: 'Оптимум',
       subtitle: 'Генеральная уборка',
-      price: '4 500',
+      price: 'от 6 500',
       unit: '₽',
       period: 'за визит',
       icon: Star,
@@ -41,12 +41,12 @@ const Pricing = () => {
     {
       name: 'Премиум',
       subtitle: 'All Inclusive',
-      price: '7 500',
+      price: 'от 10 000',
       unit: '₽',
       period: 'за визит',
       icon: Crown,
       features: [
-        'Всё из тарифа "Оптимальная"',
+        'Всё из тарифа "Оптимум"',
         'Химчистка 1 единицы мебели',
         'Мытьё холодильника',
         'Чистка духовки',
