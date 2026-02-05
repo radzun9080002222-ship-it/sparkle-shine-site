@@ -8,71 +8,68 @@ const Services = () => {
       title: 'Уборка квартир',
       description: 'Поддерживающая, генеральная и уборка после ремонта',
       price: 'от 2 500 ₽',
-      color: 'from-primary/20 to-primary/5',
-      iconBg: 'bg-primary/10',
-      iconColor: 'text-primary',
+      gradient: 'gradient-cool',
+      bgGradient: 'from-primary/20 via-primary/10 to-accent/20',
     },
     {
       icon: Building2,
       title: 'Уборка офисов',
       description: 'Ежедневная и периодическая уборка коммерческих помещений',
       price: 'от 80 ₽/м²',
-      color: 'from-secondary/20 to-secondary/5',
-      iconBg: 'bg-secondary/10',
-      iconColor: 'text-secondary',
+      gradient: 'gradient-warm',
+      bgGradient: 'from-secondary/20 via-secondary/10 to-orange-500/20',
     },
     {
       icon: Sparkles,
       title: 'Генеральная уборка',
       description: 'Глубокая очистка всех поверхностей с дезинфекцией',
       price: 'от 4 500 ₽',
-      color: 'from-primary/20 to-primary/5',
-      iconBg: 'bg-primary/10',
-      iconColor: 'text-primary',
+      gradient: 'gradient-purple',
+      bgGradient: 'from-accent/20 via-purple-500/10 to-pink-500/20',
     },
     {
       icon: Sofa,
       title: 'Химчистка мебели',
       description: 'Профессиональная чистка диванов, кресел и матрасов',
       price: 'от 1 500 ₽',
-      color: 'from-secondary/20 to-secondary/5',
-      iconBg: 'bg-secondary/10',
-      iconColor: 'text-secondary',
+      gradient: 'gradient-warm',
+      bgGradient: 'from-orange-500/20 via-secondary/10 to-red-500/20',
     },
     {
       icon: Wind,
       title: 'Мойка окон',
       description: 'Мытьё окон, витрин и фасадов на любой высоте',
       price: 'от 400 ₽/окно',
-      color: 'from-primary/20 to-primary/5',
-      iconBg: 'bg-primary/10',
-      iconColor: 'text-primary',
+      gradient: 'gradient-cool',
+      bgGradient: 'from-cyan-500/20 via-primary/10 to-blue-500/20',
     },
     {
       icon: Warehouse,
       title: 'После ремонта',
       description: 'Полная уборка с удалением строительной пыли',
       price: 'от 5 000 ₽',
-      color: 'from-secondary/20 to-secondary/5',
-      iconBg: 'bg-secondary/10',
-      iconColor: 'text-secondary',
+      gradient: 'gradient-purple',
+      bgGradient: 'from-violet-500/20 via-accent/10 to-fuchsia-500/20',
     },
   ];
 
   return (
-    <section id="services" className="py-24 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
+    <section id="services" className="py-28 relative overflow-hidden">
+      {/* Colorful Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-accent/20 to-transparent rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-secondary/20 to-transparent rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+        <div className="text-center max-w-2xl mx-auto mb-20">
+          <span className="inline-block px-5 py-2 rounded-full hero-gradient text-white text-sm font-semibold mb-6 shadow-lg">
             Наши услуги
           </span>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Полный спектр
-            <span className="text-gradient"> клининговых услуг</span>
+            <br />
+            <span className="text-gradient">клининговых услуг</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             Выберите подходящую услугу или закажите комплексную уборку со скидкой 15%
@@ -80,34 +77,34 @@ const Services = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
               key={index}
-              className="group relative bg-card rounded-2xl p-6 border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+              className="group relative bg-card rounded-3xl p-8 border-2 border-border hover:border-transparent transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 overflow-hidden"
             >
-              {/* Gradient Background */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${service.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity`} />
+              {/* Gradient Background on Hover */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${service.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
               
               <div className="relative z-10">
                 {/* Icon */}
-                <div className={`w-14 h-14 rounded-2xl ${service.iconBg} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
-                  <service.icon className={`w-7 h-7 ${service.iconColor}`} />
+                <div className={`w-16 h-16 rounded-2xl ${service.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
+                  <service.icon className="w-8 h-8 text-white" />
                 </div>
 
                 {/* Content */}
-                <h3 className="font-heading text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                <h3 className="font-heading text-2xl font-bold mb-3">
                   {service.title}
                 </h3>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed mb-6">
                   {service.description}
                 </p>
 
                 {/* Footer */}
-                <div className="flex items-center justify-between pt-4 border-t border-border">
-                  <span className="font-heading text-lg font-bold text-primary">{service.price}</span>
-                  <button className="w-10 h-10 rounded-xl bg-muted group-hover:bg-primary flex items-center justify-center transition-colors">
-                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
+                <div className="flex items-center justify-between pt-5 border-t-2 border-border group-hover:border-white/30 transition-colors">
+                  <span className="font-heading text-xl font-bold text-primary">{service.price}</span>
+                  <button className={`w-12 h-12 rounded-2xl bg-muted group-hover:${service.gradient} flex items-center justify-center transition-all group-hover:shadow-lg`}>
+                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-white transition-colors" />
                   </button>
                 </div>
               </div>
@@ -116,8 +113,8 @@ const Services = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
-          <Button size="lg" className="rounded-full px-8 shadow-lg shadow-primary/25 hero-gradient">
+        <div className="text-center mt-16">
+          <Button size="lg" className="rounded-full px-12 py-7 text-lg shadow-2xl glow-effect hero-gradient hover:scale-105 transition-transform">
             Смотреть все услуги
           </Button>
         </div>
