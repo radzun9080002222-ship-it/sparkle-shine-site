@@ -9,25 +9,21 @@ const About = () => {
       icon: Users,
       title: 'Опытная команда',
       description: 'Обученные специалисты с опытом',
-      color: 'gradient-cool',
     },
     {
       icon: Leaf,
       title: 'Эко-средства',
       description: 'Безопасно для детей и животных',
-      color: 'gradient-warm',
     },
     {
       icon: Award,
       title: 'Гарантия качества',
       description: 'Бесплатная переделка в течение 24ч',
-      color: 'gradient-purple',
     },
     {
       icon: Clock,
       title: 'Работаем быстро',
       description: 'Выезд в день обращения',
-      color: 'hero-gradient',
     },
   ];
 
@@ -39,49 +35,42 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-28 relative overflow-hidden">
-      {/* Colorful Decorative Elements */}
-      <div className="absolute top-1/2 -translate-y-1/2 -left-64 w-[600px] h-[600px] bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-3xl" />
-      <div className="absolute top-1/4 -right-32 w-[400px] h-[400px] bg-gradient-to-br from-secondary/20 to-orange-500/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-1/3 w-[300px] h-[300px] bg-gradient-to-br from-accent/20 to-pink-500/20 rounded-full blur-3xl" />
+    <section id="about" className="py-24 relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute top-1/2 -translate-y-1/2 -left-64 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute top-1/4 -right-32 w-[300px] h-[300px] bg-secondary/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left - Visual with Photos */}
           <div className="relative">
-            {/* Main Photo with gradient border */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl glow-effect">
-              <div className="absolute -inset-1 hero-gradient rounded-3xl blur-sm" />
-              <div className="relative">
-                <img 
-                  src={teamImage} 
-                  alt="Команда Империя Блеска" 
-                  className="w-full h-[450px] object-cover rounded-3xl"
-                />
-                {/* Colorful overlay */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/40 via-transparent to-accent/30 rounded-3xl" />
-              </div>
+            {/* Main Photo */}
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <img 
+                src={teamImage} 
+                alt="Команда Империя Блеска" 
+                className="w-full h-[400px] object-cover"
+              />
             </div>
             
             {/* Secondary Photo - overlapping */}
-            <div className="absolute -bottom-10 -right-6 w-52 h-72 rounded-2xl overflow-hidden shadow-2xl border-4 border-white hidden md:block glow-warm">
+            <div className="absolute -bottom-8 -right-8 w-48 h-64 rounded-2xl overflow-hidden shadow-xl border-4 border-background hidden md:block">
               <img 
                 src={windowImage} 
                 alt="Мытье окон" 
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-secondary/40 to-transparent" />
             </div>
 
             {/* Floating Badge */}
-            <div className="absolute -top-6 -left-6 px-6 py-4 gradient-warm rounded-2xl shadow-2xl text-white">
+            <div className="absolute -top-4 -left-4 px-6 py-4 bg-card rounded-2xl shadow-xl border border-border">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                  <Award className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center">
+                  <Award className="w-6 h-6 text-secondary" />
                 </div>
                 <div>
-                  <p className="font-heading font-bold text-lg">№1 в Сочи</p>
-                  <p className="text-sm opacity-90">по версии клиентов</p>
+                  <p className="font-heading font-bold">№1 в Сочи</p>
+                  <p className="text-sm text-muted-foreground">по версии клиентов</p>
                 </div>
               </div>
             </div>
@@ -90,14 +79,13 @@ const About = () => {
           {/* Right - Content */}
           <div className="space-y-8">
             <div>
-              <span className="inline-block px-5 py-2 rounded-full gradient-purple text-white text-sm font-semibold mb-6 shadow-lg">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
                 О компании
               </span>
-              <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">
                 Мы делаем
-                <br />
-                <span className="text-gradient">чистоту</span>
-                <span className="text-gradient-warm"> доступной</span>
+                <span className="text-gradient"> чистоту </span>
+                доступной
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
                 «Империя Блеска» — это команда профессионалов в Сочи, которая заботится о чистоте 
@@ -111,13 +99,13 @@ const About = () => {
               {advantages.map((item, index) => (
                 <div
                   key={index}
-                  className="group flex items-start gap-4 p-5 rounded-2xl bg-card border-2 border-border hover:border-transparent hover:shadow-xl transition-all hover:-translate-y-1"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors"
                 >
-                  <div className={`w-12 h-12 rounded-xl ${item.color} flex items-center justify-center shrink-0 shadow-lg`}>
-                    <item.icon className="w-6 h-6 text-white" />
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <item.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-heading font-bold text-lg mb-1">{item.title}</h4>
+                    <h4 className="font-heading font-bold mb-1">{item.title}</h4>
                     <p className="text-sm text-muted-foreground">{item.description}</p>
                   </div>
                 </div>
@@ -125,19 +113,17 @@ const About = () => {
             </div>
 
             {/* Checklist */}
-            <div className="space-y-4 pt-4">
+            <div className="space-y-3 pt-4">
               {checklist.map((item, index) => (
-                <div key={index} className="flex items-center gap-4">
-                  <div className="w-6 h-6 rounded-full gradient-cool flex items-center justify-center">
-                    <CheckCircle2 className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="text-foreground font-medium">{item}</span>
+                <div key={index} className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
+                  <span className="text-muted-foreground">{item}</span>
                 </div>
               ))}
             </div>
 
             {/* CTA */}
-            <Button size="lg" className="rounded-full px-10 py-7 text-lg shadow-2xl glow-warm gradient-warm hover:scale-105 transition-transform" asChild>
+            <Button size="lg" className="rounded-full px-8 shadow-lg shadow-primary/25 hero-gradient" asChild>
               <a href="#contacts">Связаться с нами</a>
             </Button>
           </div>
