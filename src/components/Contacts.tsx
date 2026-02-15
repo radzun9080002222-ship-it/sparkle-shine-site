@@ -3,7 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
-const Contacts = () => {
+interface ContactsProps {
+  prefilledMessage?: string;
+}
+
+const Contacts = ({ prefilledMessage = '' }: ContactsProps) => {
   const contactInfo = [
     {
       icon: Phone,
@@ -25,20 +29,21 @@ const Contacts = () => {
     },
     {
       icon: Clock,
-      label: 'Зона обслуживания',
-      value: 'Сочи, Адлер, Красная Поляна',
+      label: 'Часы работы',
+      value: 'Ежедневно с 8:00 до 20:00',
       href: null,
     },
   ];
 
+  const whatsappUrl = 'https://wa.me/79002885255';
+  const telegramUrl = 'https://t.me/+79002885255';
+
   return (
     <section id="contacts" className="py-24 relative overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-t from-muted/50 to-background" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             Контакты
@@ -55,7 +60,6 @@ const Contacts = () => {
         <div className="grid lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
           {/* Contact Info */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Contact Cards */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-4">
               {contactInfo.map((item, index) => (
                 <div
@@ -90,16 +94,20 @@ const Contacts = () => {
             {/* Social/Messenger Links */}
             <div className="p-5 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20">
               <p className="font-heading font-bold mb-3">Напишите нам в мессенджер</p>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 <a
-                  href="#"
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-md transition-all"
                 >
                   <MessageCircle className="w-5 h-5 text-primary" />
                   <span className="text-sm font-medium">WhatsApp</span>
                 </a>
                 <a
-                  href="#"
+                  href={telegramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-md transition-all"
                 >
                   <Send className="w-5 h-5 text-primary" />
@@ -151,6 +159,8 @@ const Contacts = () => {
                     placeholder="Расскажите о вашем помещении и пожеланиях..."
                     rows={4}
                     className="rounded-xl bg-muted/50 border-border focus:border-primary resize-none"
+                    defaultValue={prefilledMessage}
+                    key={prefilledMessage}
                   />
                 </div>
 

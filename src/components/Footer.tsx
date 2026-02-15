@@ -1,4 +1,4 @@
-import { Sparkles, MapPin, Phone, Mail } from 'lucide-react';
+import { Sparkles, MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -7,15 +7,14 @@ const Footer = () => {
     services: [
       { name: 'Уборка квартир', href: '#services' },
       { name: 'Уборка офисов', href: '#services' },
-      { name: 'Генеральная уборка', href: '#services' },
-      { name: 'Химчистка мебели', href: '#services' },
-      { name: 'Мойка окон', href: '#services' },
+      { name: 'Химчистка', href: '#services' },
+      { name: 'После ремонта', href: '#services' },
+      { name: 'Доп. услуги', href: '#services' },
     ],
     company: [
       { name: 'О компании', href: '#about' },
       { name: 'Наша команда', href: '#about' },
-      { name: 'Отзывы клиентов', href: '#' },
-      { name: 'Вакансии', href: '#' },
+      { name: 'Отзывы клиентов', href: '#reviews' },
     ],
     legal: [
       { name: 'Политика конфиденциальности', href: '#' },
@@ -26,7 +25,6 @@ const Footer = () => {
 
   return (
     <footer className="bg-foreground text-background relative overflow-hidden">
-      {/* Decorative gradient */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
       
       <div className="container mx-auto px-4 py-16">
@@ -43,7 +41,7 @@ const Footer = () => {
               </div>
             </a>
             <p className="text-background/70 text-sm leading-relaxed mb-6">
-              Профессиональный клининг в Сочи, Адлере и Красной Поляне.
+              Профессиональный клининг в Сочи, Адлере и Красной Поляне. Ежедневно с 8:00 до 20:00.
             </p>
             <div className="space-y-3">
               <a href="tel:+79002885255" className="flex items-center gap-3 text-sm text-background/70 hover:text-primary transition-colors">
@@ -67,10 +65,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {links.services.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-background/70 hover:text-primary transition-colors"
-                  >
+                  <a href={link.href} className="text-sm text-background/70 hover:text-primary transition-colors">
                     {link.name}
                   </a>
                 </li>
@@ -84,10 +79,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {links.company.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-background/70 hover:text-primary transition-colors"
-                  >
+                  <a href={link.href} className="text-sm text-background/70 hover:text-primary transition-colors">
                     {link.name}
                   </a>
                 </li>
@@ -101,10 +93,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {links.legal.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-background/70 hover:text-primary transition-colors"
-                  >
+                  <a href={link.href} className="text-sm text-background/70 hover:text-primary transition-colors">
                     {link.name}
                   </a>
                 </li>
@@ -120,14 +109,13 @@ const Footer = () => {
               © {currentYear} Империя Блеска. Все права защищены.
             </p>
             <div className="flex items-center gap-6">
-              <a href="#" className="text-sm text-background/50 hover:text-primary transition-colors">
+              <a href="https://wa.me/79002885255" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-background/50 hover:text-primary transition-colors">
+                <MessageCircle className="w-4 h-4" />
                 WhatsApp
               </a>
-              <a href="#" className="text-sm text-background/50 hover:text-primary transition-colors">
+              <a href="https://t.me/+79002885255" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-background/50 hover:text-primary transition-colors">
+                <Send className="w-4 h-4" />
                 Telegram
-              </a>
-              <a href="#" className="text-sm text-background/50 hover:text-primary transition-colors">
-                VK
               </a>
             </div>
           </div>

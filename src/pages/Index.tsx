@@ -1,13 +1,17 @@
+import { useState } from 'react';
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import About from "@/components/About";
 import Gallery from "@/components/Gallery";
 import Pricing from "@/components/Pricing";
+import Reviews from "@/components/Reviews";
 import Contacts from "@/components/Contacts";
 import Footer from "@/components/Footer";
 
 const Index = () => {
+  const [prefilledMessage, setPrefilledMessage] = useState('');
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -15,8 +19,9 @@ const Index = () => {
       <Services />
       <About />
       <Gallery />
-      <Pricing />
-      <Contacts />
+      <Pricing onSelectPlan={(plan) => setPrefilledMessage(`Здравствуйте! Хочу заказать: ${plan}`)} />
+      <Reviews />
+      <Contacts prefilledMessage={prefilledMessage} />
       <Footer />
     </div>
   );

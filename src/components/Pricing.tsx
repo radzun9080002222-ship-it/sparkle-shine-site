@@ -1,7 +1,11 @@
 import { Check, Star, Zap, Crown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const Pricing = () => {
+interface PricingProps {
+  onSelectPlan?: (planName: string) => void;
+}
+
+const Pricing = ({ onSelectPlan }: PricingProps) => {
   const plans = [
     {
       name: 'Базовая',
@@ -59,14 +63,22 @@ const Pricing = () => {
     },
   ];
 
+  const handleSelect = (planName: string) => {
+    if (onSelectPlan) {
+      onSelectPlan(planName);
+    }
+    const el = document.getElementById('contacts');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="pricing" className="py-24 relative overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/50 to-background" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             Тарифы
@@ -80,7 +92,6 @@ const Pricing = () => {
           </p>
         </div>
 
-        {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {plans.map((plan, index) => (
             <div
@@ -91,21 +102,18 @@ const Pricing = () => {
                   : 'bg-card border border-border hover:border-primary/30 hover:shadow-xl'
               }`}
             >
-              {/* Popular Badge */}
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-secondary text-secondary-foreground text-sm font-medium rounded-full shadow-lg">
                   Популярный выбор
                 </div>
               )}
 
-              {/* Icon */}
               <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${
                 plan.popular ? 'bg-primary-foreground/20' : 'bg-primary/10'
               }`}>
                 <plan.icon className={`w-7 h-7 ${plan.popular ? 'text-primary-foreground' : 'text-primary'}`} />
               </div>
 
-              {/* Plan Info */}
               <div className="mb-6">
                 <h3 className="font-heading text-2xl font-bold mb-1">{plan.name}</h3>
                 <p className={`text-sm ${plan.popular ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>
@@ -113,7 +121,6 @@ const Pricing = () => {
                 </p>
               </div>
 
-              {/* Price */}
               <div className="mb-8">
                 <div className="flex items-baseline gap-1">
                   <span className="font-heading text-4xl lg:text-5xl font-bold">{plan.price}</span>
@@ -124,7 +131,6 @@ const Pricing = () => {
                 </span>
               </div>
 
-              {/* Features */}
               <ul className="space-y-3 mb-8">
                 {plan.features.map((feature, fIndex) => (
                   <li key={fIndex} className="flex items-start gap-3">
@@ -138,7 +144,6 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              {/* CTA */}
               <Button
                 variant={plan.popular ? 'secondary' : plan.buttonVariant}
                 className={`w-full rounded-full ${
@@ -146,6 +151,7 @@ const Pricing = () => {
                     ? 'bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-lg' 
                     : ''
                 }`}
+                onClick={() => handleSelect(`Тариф "${plan.name}" — ${plan.subtitle}`)}
               >
                 Выбрать тариф
               </Button>
@@ -153,7 +159,6 @@ const Pricing = () => {
           ))}
         </div>
 
-        {/* Bottom Note */}
         <div className="text-center mt-12">
           <p className="text-muted-foreground">
             Нужна индивидуальная оценка?{' '}
