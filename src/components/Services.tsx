@@ -1,67 +1,106 @@
-import { Home, Building2, Sparkles, Sofa, Wind, Warehouse, ArrowUpRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+import { Home, Building2, Store, Sofa, Warehouse, Wrench, ChevronDown } from 'lucide-react';
 
 const Services = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   const services = [
     {
       icon: Home,
-      title: 'Уборка квартир',
-      description: 'Поддерживающая, генеральная и уборка после ремонта',
-      price: 'от 2 500 ₽',
+      title: 'Уборка квартир и домов',
+      price: 'от 3 500 ₽',
       color: 'from-primary/20 to-primary/5',
       iconBg: 'bg-primary/10',
       iconColor: 'text-primary',
+      items: [
+        { name: 'Поддерживающая уборка (1-комн.)', price: 'от 3 500 ₽' },
+        { name: 'Поддерживающая уборка (2-комн.)', price: 'от 4 500 ₽' },
+        { name: 'Поддерживающая уборка (3-комн.)', price: 'от 5 500 ₽' },
+        { name: 'Генеральная уборка (1-комн.)', price: 'от 6 500 ₽' },
+        { name: 'Генеральная уборка (2-комн.)', price: 'от 8 500 ₽' },
+        { name: 'Генеральная уборка (3-комн.)', price: 'от 10 500 ₽' },
+      ],
     },
     {
       icon: Building2,
       title: 'Уборка офисов',
-      description: 'Ежедневная и периодическая уборка коммерческих помещений',
-      price: 'от 80 ₽/м²',
+      price: 'от 20 ₽/м²',
       color: 'from-secondary/20 to-secondary/5',
       iconBg: 'bg-secondary/10',
       iconColor: 'text-secondary',
+      items: [
+        { name: 'Ежедневная уборка офиса', price: 'от 20 ₽/м²' },
+        { name: 'Генеральная уборка офиса', price: 'от 80 ₽/м²' },
+        { name: 'Уборка после мероприятий', price: 'от 50 ₽/м²' },
+        { name: 'Мойка окон в офисе', price: 'от 400 ₽/окно' },
+      ],
     },
     {
-      icon: Sparkles,
-      title: 'Генеральная уборка',
-      description: 'Глубокая очистка всех поверхностей с дезинфекцией',
-      price: 'от 4 500 ₽',
+      icon: Store,
+      title: 'Коммерческие объекты',
+      price: 'по договору',
       color: 'from-primary/20 to-primary/5',
       iconBg: 'bg-primary/10',
       iconColor: 'text-primary',
+      items: [
+        { name: 'Торговые площади', price: 'от 25 ₽/м²' },
+        { name: 'Рестораны и кафе', price: 'от 30 ₽/м²' },
+        { name: 'Гостиницы и апартаменты', price: 'от 2 500 ₽' },
+        { name: 'Склады и производства', price: 'по договору' },
+      ],
     },
     {
       icon: Sofa,
-      title: 'Химчистка мебели',
-      description: 'Профессиональная чистка диванов, кресел и матрасов',
+      title: 'Химчистка',
       price: 'от 1 500 ₽',
       color: 'from-secondary/20 to-secondary/5',
       iconBg: 'bg-secondary/10',
       iconColor: 'text-secondary',
-    },
-    {
-      icon: Wind,
-      title: 'Мойка окон',
-      description: 'Мытьё окон, витрин и фасадов на любой высоте',
-      price: 'от 400 ₽/окно',
-      color: 'from-primary/20 to-primary/5',
-      iconBg: 'bg-primary/10',
-      iconColor: 'text-primary',
+      items: [
+        { name: 'Химчистка дивана', price: 'от 2 500 ₽' },
+        { name: 'Химчистка кресла', price: 'от 1 500 ₽' },
+        { name: 'Химчистка матраса', price: 'от 2 000 ₽' },
+        { name: 'Химчистка ковра', price: 'от 300 ₽/м²' },
+        { name: 'Химчистка штор', price: 'от 500 ₽/м²' },
+      ],
     },
     {
       icon: Warehouse,
-      title: 'После ремонта',
-      description: 'Полная уборка с удалением строительной пыли',
+      title: 'Уборка после ремонта',
       price: 'от 5 000 ₽',
+      color: 'from-primary/20 to-primary/5',
+      iconBg: 'bg-primary/10',
+      iconColor: 'text-primary',
+      items: [
+        { name: 'Послеремонтная уборка (1-комн.)', price: 'от 5 000 ₽' },
+        { name: 'Послеремонтная уборка (2-комн.)', price: 'от 7 000 ₽' },
+        { name: 'Послеремонтная уборка (3-комн.)', price: 'от 9 000 ₽' },
+        { name: 'Послеремонтная уборка дома', price: 'от 12 000 ₽' },
+      ],
+    },
+    {
+      icon: Wrench,
+      title: 'Дополнительные услуги',
+      price: 'от 400 ₽',
       color: 'from-secondary/20 to-secondary/5',
       iconBg: 'bg-secondary/10',
       iconColor: 'text-secondary',
+      items: [
+        { name: 'Мытьё окон', price: 'от 400 ₽/окно' },
+        { name: 'Мытьё холодильника', price: 'от 1 500 ₽' },
+        { name: 'Чистка духовки', price: 'от 1 500 ₽' },
+        { name: 'Глажка белья', price: 'от 500 ₽' },
+        { name: 'Уборка балкона', price: 'от 1 500 ₽' },
+      ],
     },
   ];
 
+  const toggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
     <section id="services" className="py-24 relative overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
       
       <div className="container mx-auto px-4 relative z-10">
@@ -75,7 +114,7 @@ const Services = () => {
             <span className="text-gradient"> клининговых услуг</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Выберите подходящую услугу или закажите комплексную уборку со скидкой 15%
+            Скидка новому клиенту <span className="text-primary font-bold">10%</span>
           </p>
         </div>
 
@@ -84,42 +123,45 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group relative bg-card rounded-2xl p-6 border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+              className="group relative bg-card rounded-2xl border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 overflow-hidden"
             >
               {/* Gradient Background */}
               <div className={`absolute inset-0 bg-gradient-to-br ${service.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity`} />
               
-              <div className="relative z-10">
-                {/* Icon */}
-                <div className={`w-14 h-14 rounded-2xl ${service.iconBg} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
-                  <service.icon className={`w-7 h-7 ${service.iconColor}`} />
+              {/* Clickable Header */}
+              <button
+                onClick={() => toggle(index)}
+                className="relative z-10 w-full p-6 text-left"
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex items-start gap-4">
+                    <div className={`w-14 h-14 rounded-2xl ${service.iconBg} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}>
+                      <service.icon className={`w-7 h-7 ${service.iconColor}`} />
+                    </div>
+                    <div>
+                      <h3 className="font-heading text-lg font-bold group-hover:text-primary transition-colors">
+                        {service.title}
+                      </h3>
+                      <span className="font-heading text-lg font-bold text-primary mt-1 block">{service.price}</span>
+                    </div>
+                  </div>
+                  <ChevronDown className={`w-5 h-5 text-muted-foreground shrink-0 mt-1 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`} />
                 </div>
+              </button>
 
-                {/* Content */}
-                <h3 className="font-heading text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
-                  {service.description}
-                </p>
-
-                {/* Footer */}
-                <div className="flex items-center justify-between pt-4 border-t border-border">
-                  <span className="font-heading text-lg font-bold text-primary">{service.price}</span>
-                  <button className="w-10 h-10 rounded-xl bg-muted group-hover:bg-primary flex items-center justify-center transition-colors">
-                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
-                  </button>
+              {/* Expandable Price List */}
+              <div className={`relative z-10 overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-96 pb-6' : 'max-h-0'}`}>
+                <div className="px-6 space-y-2 border-t border-border mx-6 pt-4">
+                  {service.items.map((item, i) => (
+                    <div key={i} className="flex items-center justify-between py-2">
+                      <span className="text-sm text-muted-foreground">{item.name}</span>
+                      <span className="text-sm font-bold text-primary whitespace-nowrap ml-4">{item.price}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* CTA */}
-        <div className="text-center mt-12">
-          <Button size="lg" className="rounded-full px-8 shadow-lg shadow-primary/25 hero-gradient">
-            Смотреть все услуги
-          </Button>
         </div>
       </div>
     </section>

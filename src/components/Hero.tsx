@@ -1,4 +1,4 @@
-import { ArrowRight, Star, Shield, Clock, CheckCircle2, Phone } from 'lucide-react';
+import { ArrowRight, Star, Shield, Clock, CheckCircle2, Phone, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/steam-cleaning.jpeg';
 
@@ -41,7 +41,7 @@ const Hero = () => {
             {/* Description */}
             <p className="text-lg text-muted-foreground max-w-md leading-relaxed">
               Профессиональный клининг для вашего дома и офиса. 
-              Используем эко-средства и современное оборудование.
+              Используем профессиональные средства и современное оборудование.
             </p>
 
             {/* Features */}
@@ -83,10 +83,8 @@ const Hero = () => {
                 alt="Профессиональная уборка - Империя Блеска" 
                 className="w-full h-[500px] object-cover"
               />
-              {/* Overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
               
-              {/* Stats on image */}
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="grid grid-cols-3 gap-4">
                   <div className="bg-card/90 backdrop-blur-sm rounded-xl p-3 text-center">
@@ -108,8 +106,8 @@ const Hero = () => {
             {/* Floating Elements */}
             <div className="absolute -top-4 -right-4 px-4 py-2 bg-card rounded-xl shadow-lg border border-border animate-float">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium">Эко-средства</span>
+                <Wrench className="w-5 h-5 text-primary" />
+                <span className="text-sm font-medium">Проф. средства</span>
               </div>
             </div>
 
