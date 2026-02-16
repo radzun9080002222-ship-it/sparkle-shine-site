@@ -34,9 +34,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-lg shadow-primary/25 group-hover:shadow-primary/40 transition-shadow">
-              <Sparkles className="w-6 h-6 text-primary-foreground" />
-            </div>
+            <img src={logo} alt="Империя Блеска" className="w-12 h-12 object-contain" />
             <div className="hidden sm:block">
               <span className="font-heading text-xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
                 Империя Блеска

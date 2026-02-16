@@ -33,9 +33,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <a href="#" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center">
-                <Sparkles className="w-6 h-6 text-primary-foreground" />
-              </div>
+              <img src={logo} alt="Империя Блеска" className="w-12 h-12 object-contain" />
               <div>
                 <span className="font-heading text-xl font-bold">Империя Блеска</span>
                 <p className="text-xs text-background/60">Клининговая компания</p>
