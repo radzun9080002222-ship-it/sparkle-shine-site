@@ -1,4 +1,5 @@
 import { Sparkles, MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
+import maxIcon from '@/assets/max-icon.jpg';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -118,7 +119,7 @@ const Footer = () => {
                 Telegram
               </a>
               <a href="https://max.ru/u/f9LHodD0cOJtMUjlrXWI6y94fo8f8qPlmQdiA50RMF8i1MsNISiZPv1iKWk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-background/50 hover:text-primary transition-colors">
-                <Mail className="w-4 h-4" />
+                <img src={maxIcon} alt="Max" className="w-4 h-4 rounded" />
                 Max
               </a>
             </div>
