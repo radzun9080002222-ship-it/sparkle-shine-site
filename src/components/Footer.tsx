@@ -33,10 +33,10 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <a href="#" className="flex items-center gap-3 mb-6">
-              <img src={logo} alt="Империя Блеска" className="w-12 h-12 object-contain" />
+              <img src={logo} alt="Империя Блеска" className="w-16 h-16 object-contain" />
               <div>
-                <span className="font-heading text-xl font-bold">Империя Блеска</span>
-                <p className="text-xs text-background/60">Клининговая компания</p>
+                <span className="font-heading text-2xl font-extrabold">Империя Блеска</span>
+                <p className="text-sm font-medium text-background/60">Клининговая компания</p>
               </div>
             </a>
             <p className="text-background/70 text-sm leading-relaxed mb-6">

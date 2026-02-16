@@ -34,12 +34,12 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
-            <img src={logo} alt="Империя Блеска" className="w-12 h-12 object-contain" />
+            <img src={logo} alt="Империя Блеска" className="w-16 h-16 object-contain" />
             <div className="hidden sm:block">
-              <span className="font-heading text-xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+              <span className="font-heading text-2xl font-extrabold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
                 Империя Блеска
               </span>
-              <p className="text-xs text-muted-foreground -mt-0.5">Клининговая компания</p>
+              <p className="text-sm font-medium text-muted-foreground -mt-0.5">Клининговая компания</p>
             </div>
           </a>
 
