@@ -1,4 +1,5 @@
-import { Sparkles, MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
