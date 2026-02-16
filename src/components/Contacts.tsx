@@ -37,6 +37,7 @@ const Contacts = ({ prefilledMessage = '' }: ContactsProps) => {
 
   const whatsappUrl = 'https://wa.me/79002885255';
   const telegramUrl = 'https://t.me/+79002885255';
+  const maxUrl = 'https://max.ru/u/f9LHodD0cOJtMUjlrXWI6y94fo8f8qPlmQdiA50RMF8i1MsNISiZPv1iKWk';
 
   return (
     <section id="contacts" className="py-24 relative overflow-hidden">
@@ -112,6 +113,15 @@ const Contacts = ({ prefilledMessage = '' }: ContactsProps) => {
                 >
                   <Send className="w-5 h-5 text-primary" />
                   <span className="text-sm font-medium">Telegram</span>
+                </a>
+                <a
+                  href={maxUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-md transition-all"
+                >
+                  <Mail className="w-5 h-5 text-primary" />
+                  <span className="text-sm font-medium">Max</span>
                 </a>
               </div>
             </div>
