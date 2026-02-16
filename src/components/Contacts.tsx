@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react';
+import maxIcon from '@/assets/max-icon.jpg';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -120,7 +121,7 @@ const Contacts = ({ prefilledMessage = '' }: ContactsProps) => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-md transition-all"
                 >
-                  <Mail className="w-5 h-5 text-primary" />
+                  <img src={maxIcon} alt="Max" className="w-5 h-5 rounded" />
                   <span className="text-sm font-medium">Max</span>
                 </a>
               </div>
