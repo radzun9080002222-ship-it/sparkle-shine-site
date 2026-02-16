@@ -1,5 +1,4 @@
-import { MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
-import logo from '@/assets/logo.png';
+import { Sparkles, MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -33,7 +32,9 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <a href="#" className="flex items-center gap-3 mb-6">
-              <img src={logo} alt="Империя Блеска" className="w-16 h-16 object-contain" />
+              <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center">
+                <Sparkles className="w-7 h-7 text-primary-foreground" />
+              </div>
               <div>
                 <span className="font-heading text-2xl font-extrabold">Империя Блеска</span>
                 <p className="text-sm font-medium text-background/60">Клининговая компания</p>
