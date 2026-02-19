@@ -1,44 +1,133 @@
-import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react';
-import maxIcon from '@/assets/max-icon.jpg';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import React, { useMemo, useState } from "react";
+import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
+import maxIcon from "@/assets/max-icon.jpg";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 interface ContactsProps {
   prefilledMessage?: string;
 }
 
-const Contacts = ({ prefilledMessage = '' }: ContactsProps) => {
-  const contactInfo = [
-    {
-      icon: Phone,
-      label: 'Телефон',
-      value: '+7 900 288-52-55',
-      href: 'tel:+79002885255',
-    },
-    {
-      icon: Mail,
-      label: 'Email',
-      value: 'imperiableska2025@gmail.com',
-      href: 'mailto:imperiableska2025@gmail.com',
-    },
-    {
-      icon: MapPin,
-      label: 'Адрес',
-      value: 'г. Сочи, ул. Донская, 12',
-      href: 'https://maps.google.com/?q=Сочи,ул.Донская,12',
-    },
-    {
-      icon: Clock,
-      label: 'Часы работы',
-      value: 'Ежедневно с 8:00 до 20:00',
-      href: null,
-    },
-  ];
+const GOOGLE_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfb28U4RIVI2K9h6cyjSbwxRqMVMUyUeuKuQADfPWonb71ypQ/formResponse";
 
-  const whatsappUrl = 'https://wa.me/79002885255';
-  const telegramUrl = 'https://t.me/+79002885255';
-  const maxUrl = 'https://max.ru/u/f9LHodD0cOJtMUjlrXWI6y94fo8f8qPlmQdiA50RMF8i1MsNISiZPv1iKWk';
+async function sendToGoogleForm(payload: {
+  name: string;
+  phone: string;
+  email?: string;
+  message?: string;
+}) {
+  const body = new URLSearchParams();
+  body.append("entry.727782635", payload.name || "");
+  body.append("entry.1862926664", payload.phone || "");
+  body.append("entry.557277616", payload.email || "");
+  body.append("entry.1008164226", payload.message || "");
+
+  // Google Forms со статика (GitHub Pages) — через no-cors
+  await fetch(GOOGLE_FORM_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+    body,
+  });
+}
+
+function normalizePhone(phone: string) {
+  // Лёгкая нормализация: оставляем цифры и +, чтобы не отправлять мусор
+  const cleaned = phone.replace(/[^\d+]/g, "");
+  return cleaned;
+}
+
+const Contacts = ({ prefilledMessage = "" }: ContactsProps) => {
+  const contactInfo = useMemo(
+    () => [
+      {
+        icon: Phone,
+        label: "Телефон",
+        value: "+7 900 288-52-55",
+        href: "tel:+79002885255",
+      },
+      {
+        icon: Mail,
+        label: "Email",
+        value: "imperiableska2025@gmail.com",
+        href: "mailto:imperiableska2025@gmail.com",
+      },
+      {
+        icon: MapPin,
+        label: "Адрес",
+        value: "г. Сочи, ул. Донская, 12",
+        href: "https://maps.google.com/?q=Сочи,ул.Донская,12",
+      },
+      {
+        icon: Clock,
+        label: "Часы работы",
+        value: "Ежедневно с 8:00 до 20:00",
+        href: null as string | null,
+      },
+    ],
+    []
+  );
+
+  const whatsappUrl = "https://wa.me/79002885255";
+  const telegramUrl = "https://t.me/+79002885255";
+  const maxUrl =
+    "https://max.ru/u/f9LHodD0cOJtMUjlrXWI6y94fo8f8qPlmQdiA50RMF8i1MsNISiZPv1iKWk";
+
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState(prefilledMessage);
+
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+
+  // если префилл меняется извне — обновим поле сообщения
+  React.useEffect(() => {
+    setMessage(prefilledMessage || "");
+  }, [prefilledMessage]);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (isSending) return;
+
+    const n = name.trim();
+    const p = normalizePhone(phone.trim());
+    const em = email.trim();
+    const msg = message.trim();
+
+    // Минимальная валидация: телефон обязателен
+    if (!p) {
+      setStatus("error");
+      return;
+    }
+
+    try {
+      setIsSending(true);
+      setStatus("idle");
+
+      await sendToGoogleForm({
+        name: n,
+        phone: p,
+        email: em,
+        message: msg,
+      });
+
+      setStatus("success");
+
+      // очистим поля (сообщение можно не чистить — но лучше чистить)
+      setName("");
+      setPhone("");
+      setEmail("");
+      setMessage(prefilledMessage || "");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    } finally {
+      setIsSending(false);
+    }
+  }
 
   return (
     <section id="contacts" className="py-24 relative overflow-hidden">
@@ -75,7 +164,9 @@ const Contacts = ({ prefilledMessage = '' }: ContactsProps) => {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground mb-1">{item.label}</p>
-                        <p className="font-medium group-hover:text-primary transition-colors">{item.value}</p>
+                        <p className="font-medium group-hover:text-primary transition-colors">
+                          {item.value}
+                        </p>
                       </div>
                     </a>
                   ) : (
@@ -106,6 +197,7 @@ const Contacts = ({ prefilledMessage = '' }: ContactsProps) => {
                   <MessageCircle className="w-5 h-5 text-primary" />
                   <span className="text-sm font-medium">WhatsApp</span>
                 </a>
+
                 <a
                   href={telegramUrl}
                   target="_blank"
@@ -115,6 +207,7 @@ const Contacts = ({ prefilledMessage = '' }: ContactsProps) => {
                   <Send className="w-5 h-5 text-primary" />
                   <span className="text-sm font-medium">Telegram</span>
                 </a>
+
                 <a
                   href={maxUrl}
                   target="_blank"
@@ -136,52 +229,87 @@ const Contacts = ({ prefilledMessage = '' }: ContactsProps) => {
                 Заполните форму и мы свяжемся с вами в течение 15 минут
               </p>
 
-              <form className="space-y-5">
+              <form className="space-y-5" onSubmit={handleSubmit}>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Имя</label>
                     <Input
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       placeholder="Как к вам обращаться?"
                       className="rounded-xl h-12 bg-muted/50 border-border focus:border-primary"
+                      autoComplete="name"
                     />
                   </div>
+
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Телефон</label>
+                    <label className="text-sm font-medium">
+                      Телефон <span className="text-destructive">*</span>
+                    </label>
                     <Input
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
                       type="tel"
                       placeholder="+7 (___) ___-__-__"
                       className="rounded-xl h-12 bg-muted/50 border-border focus:border-primary"
+                      autoComplete="tel"
+                      required
                     />
+                    {status === "error" && !normalizePhone(phone) && (
+                      <p className="text-xs text-destructive">Укажите телефон</p>
+                    )}
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Email</label>
                   <Input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     type="email"
                     placeholder="example@mail.ru"
                     className="rounded-xl h-12 bg-muted/50 border-border focus:border-primary"
+                    autoComplete="email"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Сообщение</label>
                   <Textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     placeholder="Расскажите о вашем помещении и пожеланиях..."
                     rows={4}
                     className="rounded-xl bg-muted/50 border-border focus:border-primary resize-none"
-                    defaultValue={prefilledMessage}
-                    key={prefilledMessage}
                   />
                 </div>
 
-                <Button size="lg" className="w-full rounded-full shadow-lg shadow-primary/25 hero-gradient">
-                  Отправить заявку
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full rounded-full shadow-lg shadow-primary/25 hero-gradient"
+                  disabled={isSending}
+                >
+                  {isSending ? "Отправляем..." : status === "success" ? "Заявка отправлена ✅" : "Отправить заявку"}
                 </Button>
 
+                {status === "success" && (
+                  <p className="text-xs text-muted-foreground text-center">
+                    Спасибо! Мы получили заявку и свяжемся с вами в течение 15 минут.
+                  </p>
+                )}
+
+                {status === "error" && normalizePhone(phone) && (
+                  <p className="text-xs text-destructive text-center">
+                    Не удалось отправить заявку. Попробуйте ещё раз или напишите в мессенджер.
+                  </p>
+                )}
+
                 <p className="text-xs text-muted-foreground text-center">
-                  Нажимая кнопку, вы соглашаетесь с{' '}
-                  <a href="#" className="text-primary hover:underline">политикой конфиденциальности</a>
+                  Нажимая кнопку, вы соглашаетесь с{" "}
+                  <a href="#" className="text-primary hover:underline">
+                    политикой конфиденциальности
+                  </a>
                 </p>
               </form>
             </div>
