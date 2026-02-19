@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   // ВАЖНО для GitHub Pages (repo pages): https://<user>.github.io/<repo>/
-  base: "/sparkle-shine-site/",
+  base: "/",
 
   server: {
     host: "::",
