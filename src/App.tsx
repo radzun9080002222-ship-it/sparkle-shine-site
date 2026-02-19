@@ -15,7 +15,7 @@ const App = () => (
       <Toaster />
       <Sonner />
 
-      <BrowserRouter basename="/sparkle-shine-site/">
+      <BrowserRouter basename="/">
         <Routes>
           <Route path="/" element={<Index />} />
 
