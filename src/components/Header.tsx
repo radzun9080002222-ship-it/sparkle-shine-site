@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import logoEmpire from '@/assets/logo-empire.svg';
 
