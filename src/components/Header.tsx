@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import logoEmpire from '@/assets/logo-empire.svg';
 
@@ -33,8 +33,11 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <img src={logoEmpire} alt="Империя Блеска" className="h-12 sm:h-14 w-auto" />
+          <a href="#" className="flex items-center gap-3 group">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-lg shadow-primary/25 group-hover:shadow-primary/40 transition-shadow">
+              <Sparkles className="w-6 h-6 text-primary-foreground" />
+            </div>
+            <img src={logoEmpire} alt="Империя Блеска" className="h-10 sm:h-12 w-auto" />
           </a>
 
           {/* Desktop Navigation */}
