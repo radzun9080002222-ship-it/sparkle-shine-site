@@ -1,5 +1,6 @@
 import { Sparkles, MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
 import maxIcon from '@/assets/max-icon.jpg';
+import { reachGoal } from '@/lib/metrika';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -27,10 +28,9 @@ const Footer = () => {
   return (
     <footer className="bg-foreground text-background relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-      
+
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-          {/* Brand */}
           <div className="lg:col-span-1">
             <a href="#" className="flex items-center gap-3 mb-6">
               <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center">
@@ -45,11 +45,18 @@ const Footer = () => {
               Профессиональный клининг в Сочи, Адлере и Красной Поляне. Ежедневно с 8:00 до 20:00.
             </p>
             <div className="space-y-3">
-              <a href="tel:+79002885255" className="flex items-center gap-3 text-sm text-background/70 hover:text-primary transition-colors">
+              <a
+                href="tel:+79002885255"
+                onClick={() => reachGoal('phone_click')}
+                className="flex items-center gap-3 text-sm text-background/70 hover:text-primary transition-colors"
+              >
                 <Phone className="w-4 h-4" />
                 +7 900 288-52-55
               </a>
-              <a href="mailto:imperiableska2025@gmail.com" className="flex items-center gap-3 text-sm text-background/70 hover:text-primary transition-colors">
+              <a
+                href="mailto:imperiableska2025@gmail.com"
+                className="flex items-center gap-3 text-sm text-background/70 hover:text-primary transition-colors"
+              >
                 <Mail className="w-4 h-4" />
                 imperiableska2025@gmail.com
               </a>
@@ -60,7 +67,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Services */}
           <div>
             <h4 className="font-heading font-bold mb-6">Услуги</h4>
             <ul className="space-y-3">
@@ -74,7 +80,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Company */}
           <div>
             <h4 className="font-heading font-bold mb-6">Компания</h4>
             <ul className="space-y-3">
@@ -88,7 +93,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Legal */}
           <div>
             <h4 className="font-heading font-bold mb-6">Документы</h4>
             <ul className="space-y-3">
@@ -103,22 +107,39 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-background/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-background/50">
               © {currentYear} Империя Блеска. Все права защищены.
             </p>
             <div className="flex items-center gap-6">
-              <a href="https://wa.me/79002885255" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-background/50 hover:text-primary transition-colors">
+              <a
+                href="https://wa.me/79002885255"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => reachGoal('messenger_click')}
+                className="flex items-center gap-2 text-sm text-background/50 hover:text-primary transition-colors"
+              >
                 <MessageCircle className="w-4 h-4" />
                 WhatsApp
               </a>
-              <a href="https://t.me/+79002885255" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-background/50 hover:text-primary transition-colors">
+              <a
+                href="https://t.me/+79002885255"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => reachGoal('messenger_click')}
+                className="flex items-center gap-2 text-sm text-background/50 hover:text-primary transition-colors"
+              >
                 <Send className="w-4 h-4" />
                 Telegram
               </a>
-              <a href="https://max.ru/u/f9LHodD0cOJtMUjlrXWI6y94fo8f8qPlmQdiA50RMF8i1MsNISiZPv1iKWk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-background/50 hover:text-primary transition-colors">
+              <a
+                href="https://max.ru/u/f9LHodD0cOJtMUjlrXWI6y94fo8f8qPlmQdiA50RMF8i1MsNISiZPv1iKWk"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => reachGoal('messenger_click')}
+                className="flex items-center gap-2 text-sm text-background/50 hover:text-primary transition-colors"
+              >
                 <img src={maxIcon} alt="Max" className="w-4 h-4 rounded" />
                 Max
               </a>
