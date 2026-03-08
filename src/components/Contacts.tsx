@@ -4,6 +4,7 @@ import maxIcon from "@/assets/max-icon.jpg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { reachGoal } from "@/lib/metrika";
 
 interface ContactsProps {
   prefilledMessage?: string;
@@ -24,7 +25,6 @@ async function sendToGoogleForm(payload: {
   body.append("entry.557277616", payload.email || "");
   body.append("entry.1008164226", payload.message || "");
 
-  // Google Forms со статика (GitHub Pages) — через no-cors
   await fetch(GOOGLE_FORM_URL, {
     method: "POST",
     mode: "no-cors",
@@ -34,9 +34,7 @@ async function sendToGoogleForm(payload: {
 }
 
 function normalizePhone(phone: string) {
-  // Лёгкая нормализация: оставляем цифры и +, чтобы не отправлять мусор
-  const cleaned = phone.replace(/[^\d+]/g, "");
-  return cleaned;
+  return phone.replace(/[^\d+]/g, "");
 }
 
 const Contacts = ({ prefilledMessage = "" }: ContactsProps) => {
@@ -83,7 +81,6 @@ const Contacts = ({ prefilledMessage = "" }: ContactsProps) => {
   const [isSending, setIsSending] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
-  // если префилл меняется извне — обновим поле сообщения
   React.useEffect(() => {
     setMessage(prefilledMessage || "");
   }, [prefilledMessage]);
@@ -97,7 +94,6 @@ const Contacts = ({ prefilledMessage = "" }: ContactsProps) => {
     const em = email.trim();
     const msg = message.trim();
 
-    // Минимальная валидация: телефон обязателен
     if (!p) {
       setStatus("error");
       return;
@@ -114,9 +110,9 @@ const Contacts = ({ prefilledMessage = "" }: ContactsProps) => {
         message: msg,
       });
 
+      reachGoal("form_submit");
       setStatus("success");
 
-      // очистим поля (сообщение можно не чистить — но лучше чистить)
       setName("");
       setPhone("");
       setEmail("");
@@ -149,7 +145,6 @@ const Contacts = ({ prefilledMessage = "" }: ContactsProps) => {
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
-          {/* Contact Info */}
           <div className="lg:col-span-2 space-y-6">
             <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-4">
               {contactInfo.map((item, index) => (
@@ -158,7 +153,15 @@ const Contacts = ({ prefilledMessage = "" }: ContactsProps) => {
                   className="group p-5 rounded-2xl bg-card border border-border hover:border-primary/30 hover:shadow-lg transition-all"
                 >
                   {item.href ? (
-                    <a href={item.href} className="flex items-start gap-4">
+                    <a
+                      href={item.href}
+                      className="flex items-start gap-4"
+                      onClick={() => {
+                        if (item.href?.startsWith("tel:")) {
+                          reachGoal("phone_click");
+                        }
+                      }}
+                    >
                       <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                         <item.icon className="w-5 h-5 text-primary" />
                       </div>
@@ -184,7 +187,6 @@ const Contacts = ({ prefilledMessage = "" }: ContactsProps) => {
               ))}
             </div>
 
-            {/* Social/Messenger Links */}
             <div className="p-5 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20">
               <p className="font-heading font-bold mb-3">Напишите нам в мессенджер</p>
               <div className="flex flex-wrap gap-3">
@@ -192,6 +194,7 @@ const Contacts = ({ prefilledMessage = "" }: ContactsProps) => {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => reachGoal("messenger_click")}
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-md transition-all"
                 >
                   <MessageCircle className="w-5 h-5 text-primary" />
@@ -202,6 +205,7 @@ const Contacts = ({ prefilledMessage = "" }: ContactsProps) => {
                   href={telegramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => reachGoal("messenger_click")}
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-md transition-all"
                 >
                   <Send className="w-5 h-5 text-primary" />
@@ -212,6 +216,7 @@ const Contacts = ({ prefilledMessage = "" }: ContactsProps) => {
                   href={maxUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => reachGoal("messenger_click")}
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-md transition-all"
                 >
                   <img src={maxIcon} alt="Max" className="w-5 h-5 rounded" />
@@ -221,7 +226,6 @@ const Contacts = ({ prefilledMessage = "" }: ContactsProps) => {
             </div>
           </div>
 
-          {/* Contact Form */}
           <div className="lg:col-span-3">
             <div className="p-8 rounded-3xl bg-card border border-border shadow-xl">
               <h3 className="font-heading text-2xl font-bold mb-2">Оставить заявку</h3>
@@ -290,7 +294,11 @@ const Contacts = ({ prefilledMessage = "" }: ContactsProps) => {
                   className="w-full rounded-full shadow-lg shadow-primary/25 hero-gradient"
                   disabled={isSending}
                 >
-                  {isSending ? "Отправляем..." : status === "success" ? "Заявка отправлена ✅" : "Отправить заявку"}
+                  {isSending
+                    ? "Отправляем..."
+                    : status === "success"
+                    ? "Заявка отправлена ✅"
+                    : "Отправить заявку"}
                 </Button>
 
                 {status === "success" && (
