@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Home, Building2, Store, Sofa, Warehouse, Wrench, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Home, Building2, Store, Sofa, Warehouse, Wrench, ChevronDown, ArrowRight } from 'lucide-react';
 
 const Services = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -12,6 +13,7 @@ const Services = () => {
       color: 'from-primary/20 to-primary/5',
       iconBg: 'bg-primary/10',
       iconColor: 'text-primary',
+      link: '/uborka-kvartir-sochi',
       items: [
         { name: 'Поддерживающая уборка (1-комн.)', price: 'от 3 500 ₽' },
         { name: 'Поддерживающая уборка (2-комн.)', price: 'от 4 500 ₽' },
@@ -28,6 +30,7 @@ const Services = () => {
       color: 'from-secondary/20 to-secondary/5',
       iconBg: 'bg-secondary/10',
       iconColor: 'text-secondary',
+      link: '/uborka-oficov',
       items: [
         { name: 'Ежедневная уборка офиса', price: 'от 20 ₽/м²' },
         { name: 'Генеральная уборка офиса', price: 'от 80 ₽/м²' },
@@ -42,6 +45,7 @@ const Services = () => {
       color: 'from-primary/20 to-primary/5',
       iconBg: 'bg-primary/10',
       iconColor: 'text-primary',
+      link: null,
       items: [
         { name: 'Торговые площади', price: 'от 25 ₽/м²' },
         { name: 'Рестораны и кафе', price: 'от 30 ₽/м²' },
@@ -56,6 +60,7 @@ const Services = () => {
       color: 'from-secondary/20 to-secondary/5',
       iconBg: 'bg-secondary/10',
       iconColor: 'text-secondary',
+      link: '/himchistka-mebeli-sochi',
       items: [
         { name: 'Химчистка дивана', price: 'от 2 500 ₽' },
         { name: 'Химчистка кресла', price: 'от 1 500 ₽' },
@@ -71,6 +76,7 @@ const Services = () => {
       color: 'from-primary/20 to-primary/5',
       iconBg: 'bg-primary/10',
       iconColor: 'text-primary',
+      link: '/uborka-posle-remonta-sochi',
       items: [
         { name: 'Послеремонтная уборка (1-комн.)', price: 'от 5 000 ₽' },
         { name: 'Послеремонтная уборка (2-комн.)', price: 'от 7 000 ₽' },
@@ -85,6 +91,7 @@ const Services = () => {
       color: 'from-secondary/20 to-secondary/5',
       iconBg: 'bg-secondary/10',
       iconColor: 'text-secondary',
+      link: null,
       items: [
         { name: 'Мытьё окон', price: 'от 400 ₽/окно' },
         { name: 'Мытьё холодильника', price: 'от 1 500 ₽' },
@@ -150,7 +157,7 @@ const Services = () => {
               </button>
 
               {/* Expandable Price List */}
-              <div className={`relative z-10 overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-96 pb-6' : 'max-h-0'}`}>
+              <div className={`relative z-10 overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-[500px] pb-6' : 'max-h-0'}`}>
                 <div className="px-6 space-y-2 border-t border-border mx-6 pt-4">
                   {service.items.map((item, i) => (
                     <div key={i} className="flex items-center justify-between py-2">
@@ -158,6 +165,15 @@ const Services = () => {
                       <span className="text-sm font-bold text-primary whitespace-nowrap ml-4">{item.price}</span>
                     </div>
                   ))}
+                  {service.link && (
+                    <Link
+                      to={service.link}
+                      className="flex items-center gap-2 mt-3 pt-3 border-t border-border text-sm font-medium text-primary hover:underline"
+                    >
+                      Подробнее об услуге
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
