@@ -1,29 +1,30 @@
 import { Sparkles, MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import maxIcon from '@/assets/max-icon.jpg';
 import { reachGoal } from '@/lib/metrika';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const links = {
-    services: [
-      { name: 'Уборка квартир', href: '#services' },
-      { name: 'Уборка офисов', href: '#services' },
-      { name: 'Химчистка', href: '#services' },
-      { name: 'После ремонта', href: '#services' },
-      { name: 'Доп. услуги', href: '#services' },
-    ],
-    company: [
-      { name: 'О компании', href: '#about' },
-      { name: 'Наша команда', href: '#about' },
-      { name: 'Отзывы клиентов', href: '#reviews' },
-    ],
-    legal: [
-      { name: 'Политика конфиденциальности', href: '#' },
-      { name: 'Договор оферты', href: '#' },
-      { name: 'Реквизиты', href: '#' },
-    ],
-  };
+  const serviceLinks = [
+    { name: 'Уборка квартир', href: '/uborka-kvartir-sochi' },
+    { name: 'Уборка домов', href: '/uborka-domov-sochi' },
+    { name: 'Уборка офисов', href: '/uborka-oficov' },
+    { name: 'Химчистка мебели', href: '/himchistka-mebeli-sochi' },
+    { name: 'После ремонта', href: '/uborka-posle-remonta-sochi' },
+  ];
+
+  const companyLinks = [
+    { name: 'О компании', href: '/#about' },
+    { name: 'Наша команда', href: '/#about' },
+    { name: 'Отзывы клиентов', href: '/#reviews' },
+  ];
+
+  const legalLinks = [
+    { name: 'Политика конфиденциальности', href: '#' },
+    { name: 'Договор оферты', href: '#' },
+    { name: 'Реквизиты', href: '#' },
+  ];
 
   return (
     <footer className="bg-foreground text-background relative overflow-hidden">
@@ -32,7 +33,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="lg:col-span-1">
-            <a href="#" className="flex items-center gap-3 mb-6">
+            <Link to="/" className="flex items-center gap-3 mb-6">
               <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center">
                 <Sparkles className="w-7 h-7 text-primary-foreground" />
               </div>
@@ -40,7 +41,7 @@ const Footer = () => {
                 <span className="font-heading text-2xl font-extrabold">Империя Блеска</span>
                 <p className="text-sm font-medium text-background/60">Клининговая компания</p>
               </div>
-            </a>
+            </Link>
             <p className="text-background/70 text-sm leading-relaxed mb-6">
               Профессиональный клининг в Сочи, Адлере и Красной Поляне. Ежедневно с 8:00 до 20:00.
             </p>
@@ -70,11 +71,11 @@ const Footer = () => {
           <div>
             <h4 className="font-heading font-bold mb-6">Услуги</h4>
             <ul className="space-y-3">
-              {links.services.map((link, index) => (
+              {serviceLinks.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="text-sm text-background/70 hover:text-primary transition-colors">
+                  <Link to={link.href} className="text-sm text-background/70 hover:text-primary transition-colors">
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -83,7 +84,7 @@ const Footer = () => {
           <div>
             <h4 className="font-heading font-bold mb-6">Компания</h4>
             <ul className="space-y-3">
-              {links.company.map((link, index) => (
+              {companyLinks.map((link, index) => (
                 <li key={index}>
                   <a href={link.href} className="text-sm text-background/70 hover:text-primary transition-colors">
                     {link.name}
@@ -96,7 +97,7 @@ const Footer = () => {
           <div>
             <h4 className="font-heading font-bold mb-6">Документы</h4>
             <ul className="space-y-3">
-              {links.legal.map((link, index) => (
+              {legalLinks.map((link, index) => (
                 <li key={index}>
                   <a href={link.href} className="text-sm text-background/70 hover:text-primary transition-colors">
                     {link.name}
