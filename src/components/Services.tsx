@@ -1,115 +1,57 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Home, Building2, Store, Sofa, Warehouse, Wrench, ChevronDown, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+
+import serviceApartments from '@/assets/service-apartments.jpg';
+import serviceOffices from '@/assets/service-offices.jpg';
+import serviceCommercial from '@/assets/service-commercial.jpg';
+import serviceDrycleaning from '@/assets/service-drycleaning.jpg';
+import serviceRenovation from '@/assets/service-renovation.jpg';
+import serviceExtra from '@/assets/service-extra.jpg';
+
+const services = [
+  {
+    title: 'Уборка квартир и домов',
+    price: 'от 3 500 ₽',
+    image: serviceApartments,
+    link: '/uborka-kvartir-sochi',
+  },
+  {
+    title: 'Уборка офисов',
+    price: 'от 20 ₽/м²',
+    image: serviceOffices,
+    link: '/uborka-oficov',
+  },
+  {
+    title: 'Коммерческие объекты',
+    price: 'по договору',
+    image: serviceCommercial,
+    link: null,
+  },
+  {
+    title: 'Химчистка мебели',
+    price: 'от 1 500 ₽',
+    image: serviceDrycleaning,
+    link: '/himchistka-mebeli-sochi',
+  },
+  {
+    title: 'Уборка после ремонта',
+    price: 'от 5 000 ₽',
+    image: serviceRenovation,
+    link: '/uborka-posle-remonta-sochi',
+  },
+  {
+    title: 'Дополнительные услуги',
+    price: 'от 400 ₽',
+    image: serviceExtra,
+    link: null,
+  },
+];
 
 const Services = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const services = [
-    {
-      icon: Home,
-      title: 'Уборка квартир и домов',
-      price: 'от 3 500 ₽',
-      color: 'from-primary/20 to-primary/5',
-      iconBg: 'bg-primary/10',
-      iconColor: 'text-primary',
-      link: '/uborka-kvartir-sochi',
-      items: [
-        { name: 'Поддерживающая уборка (1-комн.)', price: 'от 3 500 ₽' },
-        { name: 'Поддерживающая уборка (2-комн.)', price: 'от 4 500 ₽' },
-        { name: 'Поддерживающая уборка (3-комн.)', price: 'от 5 500 ₽' },
-        { name: 'Генеральная уборка (1-комн.)', price: 'от 6 500 ₽' },
-        { name: 'Генеральная уборка (2-комн.)', price: 'от 8 500 ₽' },
-        { name: 'Генеральная уборка (3-комн.)', price: 'от 10 500 ₽' },
-      ],
-    },
-    {
-      icon: Building2,
-      title: 'Уборка офисов',
-      price: 'от 20 ₽/м²',
-      color: 'from-secondary/20 to-secondary/5',
-      iconBg: 'bg-secondary/10',
-      iconColor: 'text-secondary',
-      link: '/uborka-oficov',
-      items: [
-        { name: 'Ежедневная уборка офиса', price: 'от 20 ₽/м²' },
-        { name: 'Генеральная уборка офиса', price: 'от 80 ₽/м²' },
-        { name: 'Уборка после мероприятий', price: 'от 50 ₽/м²' },
-        { name: 'Мойка окон в офисе', price: 'от 400 ₽/окно' },
-      ],
-    },
-    {
-      icon: Store,
-      title: 'Коммерческие объекты',
-      price: 'по договору',
-      color: 'from-primary/20 to-primary/5',
-      iconBg: 'bg-primary/10',
-      iconColor: 'text-primary',
-      link: null,
-      items: [
-        { name: 'Торговые площади', price: 'от 25 ₽/м²' },
-        { name: 'Рестораны и кафе', price: 'от 30 ₽/м²' },
-        { name: 'Гостиницы и апартаменты', price: 'от 2 500 ₽' },
-        { name: 'Склады и производства', price: 'по договору' },
-      ],
-    },
-    {
-      icon: Sofa,
-      title: 'Химчистка',
-      price: 'от 1 500 ₽',
-      color: 'from-secondary/20 to-secondary/5',
-      iconBg: 'bg-secondary/10',
-      iconColor: 'text-secondary',
-      link: '/himchistka-mebeli-sochi',
-      items: [
-        { name: 'Химчистка дивана', price: 'от 2 500 ₽' },
-        { name: 'Химчистка кресла', price: 'от 1 500 ₽' },
-        { name: 'Химчистка матраса', price: 'от 2 000 ₽' },
-        { name: 'Химчистка ковра', price: 'от 300 ₽/м²' },
-        { name: 'Химчистка штор', price: 'от 500 ₽/м²' },
-      ],
-    },
-    {
-      icon: Warehouse,
-      title: 'Уборка после ремонта',
-      price: 'от 5 000 ₽',
-      color: 'from-primary/20 to-primary/5',
-      iconBg: 'bg-primary/10',
-      iconColor: 'text-primary',
-      link: '/uborka-posle-remonta-sochi',
-      items: [
-        { name: 'Послеремонтная уборка (1-комн.)', price: 'от 5 000 ₽' },
-        { name: 'Послеремонтная уборка (2-комн.)', price: 'от 7 000 ₽' },
-        { name: 'Послеремонтная уборка (3-комн.)', price: 'от 9 000 ₽' },
-        { name: 'Послеремонтная уборка дома', price: 'от 12 000 ₽' },
-      ],
-    },
-    {
-      icon: Wrench,
-      title: 'Дополнительные услуги',
-      price: 'от 400 ₽',
-      color: 'from-secondary/20 to-secondary/5',
-      iconBg: 'bg-secondary/10',
-      iconColor: 'text-secondary',
-      link: null,
-      items: [
-        { name: 'Мытьё окон', price: 'от 400 ₽/окно' },
-        { name: 'Мытьё холодильника', price: 'от 1 500 ₽' },
-        { name: 'Чистка духовки', price: 'от 1 500 ₽' },
-        { name: 'Глажка белья', price: 'от 500 ₽' },
-        { name: 'Уборка балкона', price: 'от 1 500 ₽' },
-      ],
-    },
-  ];
-
-  const toggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
     <section id="services" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
-      
+
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
@@ -125,59 +67,53 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="group relative bg-card rounded-2xl border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 overflow-hidden"
-            >
-              {/* Gradient Background */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${service.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity`} />
-              
-              {/* Clickable Header */}
-              <button
-                onClick={() => toggle(index)}
-                className="relative z-10 w-full p-6 text-left"
+        {/* Photo Tiles Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, index) => {
+            const content = (
+              <div
+                key={index}
+                className="group relative rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer shadow-lg hover:shadow-2xl transition-shadow duration-300"
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-4">
-                    <div className={`w-14 h-14 rounded-2xl ${service.iconBg} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}>
-                      <service.icon className={`w-7 h-7 ${service.iconColor}`} />
-                    </div>
-                    <div>
-                      <h3 className="font-heading text-lg font-bold group-hover:text-primary transition-colors">
-                        {service.title}
-                      </h3>
-                      <span className="font-heading text-lg font-bold text-primary mt-1 block">{service.price}</span>
-                    </div>
-                  </div>
-                  <ChevronDown className={`w-5 h-5 text-muted-foreground shrink-0 mt-1 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`} />
-                </div>
-              </button>
+                {/* Photo */}
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
 
-              {/* Expandable Price List */}
-              <div className={`relative z-10 overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-[500px] pb-6' : 'max-h-0'}`}>
-                <div className="px-6 space-y-2 border-t border-border mx-6 pt-4">
-                  {service.items.map((item, i) => (
-                    <div key={i} className="flex items-center justify-between py-2">
-                      <span className="text-sm text-muted-foreground">{item.name}</span>
-                      <span className="text-sm font-bold text-primary whitespace-nowrap ml-4">{item.price}</span>
-                    </div>
-                  ))}
-                  {service.link && (
-                    <Link
-                      to={service.link}
-                      className="flex items-center gap-2 mt-3 pt-3 border-t border-border text-sm font-medium text-primary hover:underline"
-                    >
-                      Подробнее об услуге
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  )}
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300" />
+
+                {/* Content */}
+                <div className="absolute inset-0 flex flex-col justify-end p-6">
+                  <h3 className="font-heading text-xl md:text-2xl font-bold text-white mb-1 drop-shadow-lg">
+                    {service.title}
+                  </h3>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-primary-foreground bg-primary/90 px-3 py-1 rounded-lg text-sm">
+                      {service.price}
+                    </span>
+                    {service.link && (
+                      <span className="flex items-center gap-1 text-white/80 group-hover:text-white text-sm font-medium transition-colors">
+                        Подробнее
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+
+            return service.link ? (
+              <Link key={index} to={service.link} className="block">
+                {content}
+              </Link>
+            ) : (
+              <div key={index}>{content}</div>
+            );
+          })}
         </div>
       </div>
     </section>
